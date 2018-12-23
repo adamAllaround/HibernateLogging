@@ -16,11 +16,14 @@ public class CarServiceImpl implements CarService {
 
     @Override
     public Optional<Car> getById(Long id) {
+        log.debug(String.format("Service request for object with id %d", id));
         return carDao.getById(id);
     }
 
     @Override
-    public void persist(Car transaction) {
-        carDao.persist(transaction);
+    public void persist(Car car) {
+        log.error(String.format("Service request to persist Car with make=%s, model=%s, manufactured=%s",
+                car.getMake(), car.getModel(), car.getManufacturedAt()));
+        carDao.persist(car);
     }
 }

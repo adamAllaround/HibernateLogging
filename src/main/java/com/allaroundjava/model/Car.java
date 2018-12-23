@@ -28,7 +28,7 @@ public final class Car {
         this.manufacturedAt = manufacturedAt;
     }
 
-    public Car newInstance(String make, String model, LocalDate manufacturedAt) {
+    public static Car newInstance(String make, String model, LocalDate manufacturedAt) {
         return new Car(make, model, manufacturedAt);
     }
 
