@@ -5,11 +5,7 @@ import java.time.LocalDate;
 
 @Entity
 @org.hibernate.annotations.Immutable
-public final class Car {
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id;
-
+public final class Car extends ModelBase{
     @Column(nullable = false)
     private String make;
 
@@ -30,10 +26,6 @@ public final class Car {
 
     public static Car newInstance(String make, String model, LocalDate manufacturedAt) {
         return new Car(make, model, manufacturedAt);
-    }
-
-    public Long getId() {
-        return id;
     }
 
     public String getMake() {

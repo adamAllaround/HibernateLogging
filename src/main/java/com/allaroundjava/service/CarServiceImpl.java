@@ -1,6 +1,6 @@
 package com.allaroundjava.service;
 
-import com.allaroundjava.dao.CarDao;
+import com.allaroundjava.dao.Dao;
 import com.allaroundjava.model.Car;
 import org.jboss.logging.Logger;
 
@@ -8,9 +8,9 @@ import java.util.Optional;
 
 public class CarServiceImpl implements CarService {
     private static final Logger log = Logger.getLogger(CarServiceImpl.class);
-    private final CarDao carDao;
+    private final Dao<Car> carDao;
 
-    public CarServiceImpl(CarDao carDao) {
+    public CarServiceImpl(Dao<Car> carDao) {
         this.carDao = carDao;
     }
 
@@ -22,7 +22,7 @@ public class CarServiceImpl implements CarService {
 
     @Override
     public void persist(Car car) {
-        log.error(String.format("Service request to persist Car with make=%s, model=%s, manufactured=%s",
+        log.debug(String.format("Service request to persist Car with make=%s, model=%s, manufactured=%s",
                 car.getMake(), car.getModel(), car.getManufacturedAt()));
         carDao.persist(car);
     }
