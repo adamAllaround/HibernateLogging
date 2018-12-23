@@ -10,3 +10,4 @@ settings.gradle
 /Hibernate/gradle
 /Jdbc/gradle
 /target
+*.log
