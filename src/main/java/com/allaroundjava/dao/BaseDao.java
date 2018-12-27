@@ -1,8 +1,8 @@
 package com.allaroundjava.dao;
 
 import com.allaroundjava.model.ModelBase;
-import com.allaroundjava.service.CarServiceImpl;
-import org.jboss.logging.Logger;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
@@ -11,7 +11,7 @@ import java.util.Optional;
 import java.util.function.Consumer;
 
 abstract class BaseDao<T extends ModelBase> implements Dao<T> {
-    private static final Logger log = Logger.getLogger(CarServiceImpl.class);
+    private static final Logger log = LogManager.getLogger(BaseDao.class);
     private final Class<T> aClass;
     protected final EntityManagerFactory emf;
 
@@ -33,15 +33,15 @@ abstract class BaseDao<T extends ModelBase> implements Dao<T> {
 
     @Override
     public Optional<T> getById(Long id) {
-        log.debug(String.format("Fetching %s with id %d from database", getClass(), id));
+        log.debug("Fetching {} with id {} from database", getClass(), id);
         EntityManager entityManager = emf.createEntityManager();
         return Optional.ofNullable(entityManager.find(aClass, id));
     }
 
     @Override
     public void persist(T item) {
-        log.debug(String.format("Persisting %s with id=%d",
-                item.getClass(), item.getId()));
+        log.debug("Persisting {} with id {}",
+                item.getClass(), item.getId());
         executeInTransaction(entityManager -> entityManager.persist(item));
     }
 
