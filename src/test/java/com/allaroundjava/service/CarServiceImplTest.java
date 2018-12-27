@@ -1,9 +1,8 @@
 package com.allaroundjava.service;
 
-import com.allaroundjava.dao.CarDaoImpl;
+import com.allaroundjava.dao.CarDao;
 import com.allaroundjava.dao.Dao;
 import com.allaroundjava.model.Car;
-import org.junit.BeforeClass;
 import org.junit.Test;
 
 import javax.persistence.EntityManagerFactory;
@@ -18,7 +17,7 @@ public class CarServiceImplTest {
 
     public CarServiceImplTest() {
         emf = Persistence.createEntityManagerFactory("hibernateLogging");
-        carDao = new CarDaoImpl(emf);
+        carDao = new CarDao(emf);
         carService = new CarServiceImpl(carDao);
     }
 
