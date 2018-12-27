@@ -12,11 +12,11 @@ import java.time.LocalDate;
 
 public class CarServiceImplTest {
 
-    private static EntityManagerFactory emf;
-    private static Dao<Car> carDao;
-    private static CarService carService;
-    @BeforeClass
-    public static void setUp() {
+    private EntityManagerFactory emf;
+    private Dao<Car> carDao;
+    private CarService carService;
+
+    public CarServiceImplTest() {
         emf = Persistence.createEntityManagerFactory("hibernateLogging");
         carDao = new CarDaoImpl(emf);
         carService = new CarServiceImpl(carDao);
